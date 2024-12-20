@@ -76,7 +76,7 @@ sudo chmod +x ~/luckfox-pico/output/image/blkenvflash
 # build the kernel
 echo "### exit no changes ### exit no changes ###"
 sudo ./build.sh kernelconfig
-#sudo ./build.sh
+sudo ./build.sh
 
 # SETUP CHROOT
 sudo mkdir -p ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/lib/modules/5.10.160
