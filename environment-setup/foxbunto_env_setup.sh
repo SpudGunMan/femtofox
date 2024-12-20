@@ -114,7 +114,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 sudo apt update
 
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git chrony libgpiod-dev pip3 libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest avahi-daemon protobuf-compiler ninja-build
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git chrony libgpiod-dev python3-pip libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest avahi-daemon protobuf-compiler ninja-build
 
 # Install additional tools
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
