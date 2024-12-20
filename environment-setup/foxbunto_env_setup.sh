@@ -59,6 +59,7 @@ git clone https://github.com/LuckfoxTECH/luckfox-pico.git
 cd ~/luckfox-pico
 
 sudo ./build.sh clean
+sudo ./build.sh env
 sudo ./build.sh lunch
 #sudo ./build.sh
 
