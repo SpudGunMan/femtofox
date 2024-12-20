@@ -58,6 +58,7 @@ sudo apt-get install -y git ssh make gcc gcc-multilib g++-multilib module-assist
 git clone https://github.com/LuckfoxTECH/luckfox-pico.git
 cd ~/luckfox-pico
 
+sudo ./build.sh clean
 sudo ./build.sh lunch
 #sudo ./build.sh
 
