@@ -89,7 +89,7 @@ sudo cp /usr/bin/qemu-arm-static ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/
 echo "Entering chroot and running commands..."
 sudo mount --bind /proc ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/proc && sudo mount --bind /sys ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/sys && sudo mount --bind /dev ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/dev && sudo mount --bind /dev/pts ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106/dev/pts
 
-sudo chroot ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106 /bin/bash <<EOF
+sudo -k chroot ~/luckfox-pico/sysdrv/out/rootfs_uclibc_rv1106 /bin/bash <<EOF
 echo "Inside chroot environment..."
 echo "tmpfs /run tmpfs rw,nodev,nosuid,size=32M 0 0" | sudo tee -a /etc/fstab
 
