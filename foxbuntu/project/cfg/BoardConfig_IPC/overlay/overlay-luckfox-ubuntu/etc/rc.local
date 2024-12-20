@@ -5,9 +5,6 @@
 
 luckfox-config load
 
-# try enable RTC
-echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/null 2>&1
-
 #run only on first boot
 if [ -e "/usr/local/bin/.firstboot" ]; then
   /usr/local/bin/runonce.sh
