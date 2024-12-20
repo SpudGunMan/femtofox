@@ -114,15 +114,18 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 sudo apt update
 
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git chrony libgpiod-dev python3-pip libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest avahi-daemon protobuf-compiler ninja-build
+# system
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware chrony git ninja-build libgpiod-dev libulfius-dev liborcania-dev python3-pip wireless-tools libbluetooth-dev
+# meshtastic
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" avahi-daemon avahi-utils libyaml-cpp-dev protobuf-compiler libprotobuf-dev openssl libssl-dev
 
 # Install additional tools
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" screen minicom
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools evtest
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
-#sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" RPi.GPIO gpio
+#sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" rpi.gpio-common python3-rpi.gpio
 
 # emoji font
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" fonts-noto-color-emoji ninja-build
