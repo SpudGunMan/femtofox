@@ -114,15 +114,24 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 sudo apt update
 
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git chrony python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest meshtasticd screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git chrony libgpiod-dev python3.10-venv libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest avahi-daemon protobuf-compiler ninja-build
 
-sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
+# Install additional tools
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" screen minicom
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools
+sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
+#sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" RPi.GPIO gpio
 
 # emoji font
 sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" fonts-noto-color-emoji ninja-build
 
 # meshtastic CLI / API
-pip3 install pypubsub meshtastic 
+pip3 install pypubsub meshtastic
+
+# upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
 
 ################ meshtastic community projects
 
@@ -147,14 +156,6 @@ git clone https://github.com/pdxlocations/curses-client-for-meshtastic.git /opt/
 
 # Emesh client for meshtastic
 git clone https://github.com/thecookingsenpai/emesh.git /opt/emesh
-
-# Install additional tools
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" screen minicom
-sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools
-#sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
-#sudo DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" RPi.GPIO gpio
 
 ################
 
