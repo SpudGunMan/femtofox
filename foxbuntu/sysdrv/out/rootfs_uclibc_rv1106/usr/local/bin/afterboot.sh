@@ -9,3 +9,5 @@
 #logger "$msg"
 #/usr/local/bin/updatemeshtastic.sh "--set lora.region US" 10 "First boot"
 #/usr/local/bin/updatemeshtastic.sh "--set network.wifi_enabled true" 10 "First boot"
+
+# time from mesh: `meshtastic --info | grep -oP '"time":\s*\K\d+' | head -n 1`
