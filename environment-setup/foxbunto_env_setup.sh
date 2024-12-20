@@ -22,7 +22,7 @@ echo "=========================================="
 echo "       SPUD Foxbuntu Build Environment"
 echo "=========================================="
 echo
-echo "Setting up new Foxbuntu build environment..."
+echo "Setting up new Foxbuntu build environment, build can be 2+ hours..."
 echo
 echo "This script will install the necessary packages to build the Foxbuntu image."
 echo "It will also set up a chroot environment to install additional packages. This will all take some time."
