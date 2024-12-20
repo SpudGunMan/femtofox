@@ -1,0 +1,24 @@
+# femtofox-config.txt
+# femtofox configuration file. https://github.com/noon92/femtofox
+
+### Foxbuntu settings
+
+# localization settings
+wifi_country="US"
+timezone="America/New_York"
+
+# wifi settings / wpa_supplicant
+wifi_ssid="Your SSID name"
+wifi_psk="wifipassword"
+
+### Meshtastic node settings
+
+# radio module to use
+meshtastic_lora_radio="ebyte-e22-900m30s"
+
+# url to channel config device
+meshtastic_url=""
+
+# PKI admin key, either the public key for the node or the channel 'admin' key
+meshtastic_admin_key="base64:XX="
+meshtastic_legacy_admin="false"

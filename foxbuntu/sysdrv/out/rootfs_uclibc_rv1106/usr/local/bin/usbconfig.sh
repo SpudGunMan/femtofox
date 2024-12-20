@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## file moved into /etc/femtofox-config.txt
+## possibly dump file after consumption for safty
+
+
+
 # Set the mount point
 mount_point="/mnt/usb"
 
