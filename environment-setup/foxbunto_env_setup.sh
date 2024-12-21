@@ -77,8 +77,8 @@ sudo chmod +x ~/luckfox-pico/output/image/blkenvflash
 # build the kernel
 echo "### exit no changes ### exit no changes ###"
 #sudo ./build.sh kernelconfig
-sudo ./build.sh kernel
-sudo ./build.sh driver
+#sudo ./build.sh kernel
+#sudo ./build.sh driver
 sudo ./build.sh
 
 # SETUP CHROOT
