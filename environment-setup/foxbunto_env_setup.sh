@@ -66,7 +66,8 @@ sudo ./build.sh env
 # get the femtofox environment
 cd ~
 git clone https://github.com/SpudGunMan/femtofox.git && cd ~/femtofox && git checkout labwork
-~/femtofox/foxbuntu/updatefs.sh
+# copy into luckfox-pico
+sudo ~/femtofox/foxbuntu/updatefs.sh
 cd ~/luckfox-pico/
 
 # get the blkenvflash imagemaker v2.2
@@ -76,6 +77,8 @@ sudo chmod +x ~/luckfox-pico/output/image/blkenvflash
 # build the kernel
 echo "### exit no changes ### exit no changes ###"
 #sudo ./build.sh kernelconfig
+sudo ./build.sh kernel
+sudo ./build.sh driver
 sudo ./build.sh
 
 # SETUP CHROOT
