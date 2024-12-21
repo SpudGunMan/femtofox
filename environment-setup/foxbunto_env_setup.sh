@@ -61,7 +61,7 @@ cd ~/luckfox-pico
 sudo ./build.sh clean
 sudo ./build.sh env
 #sudo ./build.sh lunch
-#sudo ./build.sh
+sudo ./build.sh
 
 # get the femtofox environment
 cd ~
