@@ -1,5 +1,5 @@
 #!/bin/bash
-# cd ~ | wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbuntu_env_setup.sh | sudo bash foxbuntu_env_setup.sh all
+# cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbuntu_env_setup.sh && sudo bash foxbuntu_env_setup.sh all
 
 if [[ $(id -u) != 0 ]]; then
   echo "This script must be run as root; use sudo"
