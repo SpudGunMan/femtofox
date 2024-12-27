@@ -1,6 +1,6 @@
 #!/bin/bash
-# one liner to download and run this script
-# cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbuntu_env_setup.sh && sudo bash foxbuntu_env_setup.sh all
+# one liner to download and install the development environment
+# cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbunto_env_setup.sh && sudo bash foxbuntu_env_setup.sh install
 
 cd ~
 if [ -f /etc/os-release ]; then
@@ -196,7 +196,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 echo "Installing packages..."
 
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build chrony
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python-is-python3python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build chrony
 if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
 
