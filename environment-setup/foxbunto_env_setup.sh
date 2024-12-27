@@ -275,7 +275,7 @@ echo "Adding femto and pico users/groups..."
 groupmod -n femto pico
 usermod -l femto pico
 usermod -aG sudo,input femto
-echo 'femto ALL=(ALL:ALL) ALL' | tee /etc/sudoers.d/femto
+echo "femto ALL=(ALL:ALL) ALL" | tee /etc/sudoers.d/femto > /dev/null
 chmod 440 /etc/sudoers.d/femto
 
 # this seems messy, user:group should be set cleanly and not corrected after?  OSC: somethings were owned my pico from factory
