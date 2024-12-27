@@ -196,7 +196,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 echo "Installing packages..."
 
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python-is-python3python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build chrony
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev avahi-daemon protobuf-compiler fonts-noto-color-emoji ninja-build chrony
 if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
 
@@ -232,8 +232,8 @@ echo "Installing additional tools..."
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients python-gps
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" screen minicom
-#DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
-#DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools evtest
 #DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" RPi.GPIO gpio
 
 
