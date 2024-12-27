@@ -230,9 +230,12 @@ git clone https://github.com/thecookingsenpai/emesh.git /opt/emesh
 
 echo "Installing additional tools..."
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
+systemctl disable mosquitto
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients python-gps
+systemctl disable gpsd
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" screen minicom
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
+systemctl disable telnet
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools evtest
 #DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" RPi.GPIO gpio
 
