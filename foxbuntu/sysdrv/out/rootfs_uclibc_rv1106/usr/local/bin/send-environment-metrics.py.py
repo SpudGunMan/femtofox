@@ -15,8 +15,10 @@ interface = meshtastic.tcp_interface.TCPInterface(hostname='127.0.0.1', noProto=
 
 telemetry_data = telemetry_pb2.Telemetry()
 telemetry_data.time = int(time.time())
-telemetry_data.environment_metrics.temperature = 352.222
-telemetry_data.environment_metrics.relative_humidity = 69
+# cpu temp 
+with open('/sys/class/thermal/thermal_zone0/temp', 'r') as cpu_temp:
+    telemetry_data.environment_metrics.temperature = int(cpu_temp.read()) / 1000
+#telemetry_data.environment_metrics.relative_humidity = 69
 # telemetry_data.environment_metrics.barometric_pressure = 0
 # telemetry_data.environment_metrics.gas_resistance = 0
 # telemetry_data.environment_metrics.voltage = 0
