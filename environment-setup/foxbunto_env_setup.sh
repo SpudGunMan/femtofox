@@ -1,6 +1,6 @@
 #!/bin/bash
 # one liner to download and install the development environment
-# cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbunto_env_setup.sh && sudo bash foxbuntu_env_setup.sh install
+# cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbunto_env_setup.sh && sudo bash foxbunto_env_setup.sh install
 
 cd ~
 if [ -f /etc/os-release ]; then
