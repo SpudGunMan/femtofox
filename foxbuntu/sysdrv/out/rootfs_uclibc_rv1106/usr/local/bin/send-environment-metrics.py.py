@@ -6,12 +6,12 @@ from meshtastic import BROADCAST_ADDR
 import time
 
 # For connection over serial
-import meshtastic.serial_interface
-interface = meshtastic.serial_interface.SerialInterface()
+# import meshtastic.serial_interface
+# interface = meshtastic.serial_interface.SerialInterface()
 
 # For connection over TCP
-# import meshtastic.tcp_interface
-# interface = meshtastic.tcp_interface.TCPInterface(hostname='192.168.1.42', noProto=False)
+import meshtastic.tcp_interface
+interface = meshtastic.tcp_interface.TCPInterface(hostname='127.0.0.1', noProto=False)
 
 telemetry_data = telemetry_pb2.Telemetry()
 telemetry_data.time = int(time.time())
