@@ -10,9 +10,6 @@ if [ -e "/usr/local/bin/.firstboot" ]; then
   /usr/local/bin/runonce.sh
 fi
 
-# try enable RTC
-echo 'ds1307 0x68' | sudo tee /sys/class/i2c-adapter/i2c-3/new_device > /dev/null 2>&1
-
 # activating USER LED
 echo 34 > /sys/class/gpio/export && echo out > /sys/class/gpio/gpio34/direction
 
