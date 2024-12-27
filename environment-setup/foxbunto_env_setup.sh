@@ -1,5 +1,18 @@
 #!/bin/bash
+# one liner to download and run this script
 # cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbuntu_env_setup.sh && sudo bash foxbuntu_env_setup.sh all
+
+cd ~
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$VERSION_ID" != "22.04" ] || [ "$NAME" != "Ubuntu" ]; then
+        echo "This script is intended for Ubuntu 22.04, exiting..."
+        exit 1
+    fi
+else
+    echo "This script is intended for Ubuntu 22.04, exiting..."
+    exit 1
+fi
 
 if [[ $(id -u) != 0 ]]; then
   echo "This script must be run as root; use sudo"
@@ -183,7 +196,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 echo "Installing packages..."
 
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build chrony
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev evtest screen avahi-daemon protobuf-compiler telnet fonts-noto-color-emoji ninja-build chrony
 if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
 
@@ -191,11 +204,38 @@ DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-
 wget https://github.com/meshtastic/firmware/releases/download/v2.5.11.8e2a3e5/meshtasticd_2.5.11.8e2a3e5_armhf.deb
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" ./meshtasticd_2.5.11.8e2a3e5_armhf.deb
 
+echo "Installing meshtastic cli..."
 
-echo "Installing dependencies for meshing-around and meshtastic cli..."
-
-pip3 install requests pyephem pytap2 meshtastic pypubsub geopy maidenhead beautifulsoup4 dadjokes schedule wikipedia googlesearch-python
+pip3 install pytap2 pypubsub meshtastic  
 if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
+
+echo "Installing meshtastic community projects..." 
+
+echo "Installing meshing around BBS..."
+
+git clone https://github.com/spudgunman/meshing-around.git /opt/meshing-around
+# Dependencies for meshing around 
+pip3 install requests pyephem geopy maidenhead beautifulsoup4 dadjokes schedule wikipedia googlesearch-python
+
+echo "Installing TC2 BBS..."
+git clone https://github.com/TheCommsChannel/TC2-BBS-mesh.git /opt/TC2-BBS-mesh
+
+echo "Installing the shell clients for meshtastic..."
+
+# Curses client for meshtastic
+git clone https://github.com/pdxlocations/curses-client-for-meshtastic.git /opt/curses-client-for-meshtastic
+
+# Emesh client for meshtastic
+git clone https://github.com/thecookingsenpai/emesh.git /opt/emesh
+
+echo "Installing additional tools..."
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" gpsd gpsd-clients python-gps
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" screen minicom
+#DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" telnet
+#DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" i2c-tools
+#DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" RPi.GPIO gpio
+
 
 echo "Setting MOTD..."
 
