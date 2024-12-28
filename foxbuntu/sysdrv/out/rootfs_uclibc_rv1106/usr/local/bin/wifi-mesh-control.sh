@@ -13,25 +13,26 @@ while true; do
     # Check if the value has changed
     if [ "$current_value" != "$previous_value" ]; then
 
-	if [ "$previous_value" -eq 1 ]; then
-	    prev_text="Wifi on"
-	elif [ "$previous_value" -eq 2 ]; then
-	    prev_text="Startup"
-	else
-	    prev_text="Wifi off"
-	fi
-	if [ "$current_value" -eq 1 ]; then
-          cur_text="Wifi on"
+      if [ "$previous_value" -eq 1 ]; then
+          prev_text="Wifi on"
+      elif [ "$previous_value" -eq 2 ]; then
+          prev_text="Startup"
       else
-          cur_text="Wifi off"
+          prev_text="Wifi off"
       fi
-  
+
+      if [ "$current_value" -eq 1 ]; then
+            cur_text="Wifi on"
+        else
+            cur_text="Wifi off"
+      fi
+      
       # Log the change
       logger "Wifi mesh control: wifi setting changed: $prev_text -> $cur_text"
-  
+
       # Update the previous value for next comparison
       previous_value="$current_value"
-  fi
+    fi
 
     # Take action based on the new value
     if [ "$current_value" == "1" ]; then
