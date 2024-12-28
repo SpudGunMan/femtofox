@@ -152,6 +152,19 @@ modify_chroot() {
   create_image
 }
 
+rebuild_chroot() {
+  echo "Updating repo..."
+  cd /home/${sudoer}/femtofox
+  git pull
+  cd /home/${sudoer}/
+  copy_femtofox_kernelcfg
+  build_kernelconfig
+  modify_rootfs
+  build_rootfs
+  build_firmware
+  create_image
+} 
+
 update_image() {
   #we still need the chroot scripts function but this will work for now.
   echo "Updating repo..."
@@ -362,6 +375,8 @@ elif [[ ${1} == "modify_kernel" ]]; then
   modify_kernel
 elif [[ ${1} == "update_image" ]]; then
   update_image
+elif [[ ${1} == "rebuild_chroot" ]]; then
+  rebuild_chroot
 elif [[ ${1} == "install" ]]; then
   { echo 'Defaults timestamp_timeout=180' | sudo EDITOR='tee -a' visudo; } > /dev/null 2>&1
   start_time=$(date +%s)
