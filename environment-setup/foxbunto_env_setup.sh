@@ -208,10 +208,14 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 echo "Installing packages..."
 
+# link gcc library
+ln -sf /lib/arm-linux-gnueabihf/libgcc_s.so.1 /usr/lib/libgcc.so
+
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware libc6-dev libc6-dev-armhf-cross wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev avahi-daemon protobuf-compiler fonts-noto-color-emoji ninja-build chrony
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware libc6-dev-armhf-cross wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev avahi-daemon protobuf-compiler fonts-noto-color-emoji ninja-build chrony
 if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
+if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 
 # Tempfix for SEGFAULT
 wget https://github.com/meshtastic/firmware/releases/download/v2.5.11.8e2a3e5/meshtasticd_2.5.11.8e2a3e5_armhf.deb
