@@ -1,7 +1,7 @@
 #!/bin/bash
 # one liner to download and install the development environment
 # cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbunto_env_setup.sh && sudo bash foxbunto_env_setup.sh install
-# touch 28th 1204
+# touch 28th 1057
 cd ~
 if [ -f /etc/os-release ]; then
     . /etc/os-release
@@ -209,7 +209,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 echo "Installing packages..."
 
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware libc6-dev-armhf-cross wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev avahi-daemon protobuf-compiler fonts-noto-color-emoji ninja-build chrony
+DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware libc6-dev libc6-dev-armhf-cross wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev avahi-daemon protobuf-compiler fonts-noto-color-emoji ninja-build chrony
 if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
 
