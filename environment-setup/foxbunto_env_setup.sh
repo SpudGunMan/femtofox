@@ -265,7 +265,8 @@ echo "femtofox" | tee /etc/hostname > /dev/null
 echo "Configuring autostart of systemd services..."
 
 systemctl enable button
-systemctl enable wifi-mesh-control
+# SPUD TEMPORARY FIX
+systemctl disable wifi-mesh-control
 systemctl disable NetworkManager
 systemctl disable NetworkManager-dispatcher
 systemctl disable NetworkManager-wait-online
