@@ -257,7 +257,6 @@ systemctl disable NetworkManager
 systemctl disable NetworkManager-dispatcher
 systemctl disable NetworkManager-wait-online
 systemctl disable vsftpd.service
-systemctl disable sys-devices-platform-acodec\x2dsound-sound-card0-controlC0.device
 systemctl disable ModemManager.service
 systemctl disable getty@tty1.service
 systemctl disable acpid
