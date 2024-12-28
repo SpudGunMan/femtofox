@@ -21,17 +21,17 @@ while true; do
 	    prev_text="Wifi off"
 	fi
 	if [ "$current_value" -eq 1 ]; then
-	    cur_text="Wifi on"
-	else
-      cur_text="Wifi off"
+          cur_text="Wifi on"
+      else
+          cur_text="Wifi off"
+      fi
+  
+      # Log the change
+      logger "Wifi mesh control: wifi setting changed: $prev_text -> $cur_text"
+  
+      # Update the previous value for next comparison
+      previous_value="$current_value"
   fi
-
-    # Log the change
-    logger "Wifi mesh control: wifi setting changed: $prev_text -> $cur_text"
-
-    # Update the previous value for next comparison
-    previous_value="$current_value"
-    fi
 
     # Take action based on the new value
     if [ "$current_value" == "1" ]; then
