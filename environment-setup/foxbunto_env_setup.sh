@@ -152,19 +152,6 @@ modify_chroot() {
   create_image
 }
 
-rebuild_chroot() {
-  echo "Updating repo..."
-  cd /home/${sudoer}/femtofox
-  git pull
-  cd /home/${sudoer}/
-  copy_femtofox_kernelcfg
-  build_kernelconfig
-  modify_rootfs
-  build_rootfs
-  build_firmware
-  create_image
-} 
-
 update_image() {
   #we still need the chroot scripts function but this will work for now.
   echo "Updating repo..."
@@ -352,9 +339,8 @@ usage() {
   echo "The following functions are available in this script:"
   echo "To install the development environment use the arg 'install' and is intended to be run ONCE only."
   echo "To modify the chroot and build an updated image use the arg 'modify_chroot'."
-  echo "To modify the kernel and build an updated image use the arg 'modify_kernel'."
+  echo "To modify the kernel and re-build an updated image use the arg 'modify_kernel'."
   echo "To update the image with the latest changes use the arg 'update_image'."
-  echo "To rebuild the chroot use the arg 'rebuild_chroot'."
   echo "other args: install_prerequisites clone_repos build_env build_sysdrv copy_femtofox_kernelcfg build_kernelconfig modify_rootfs build_rootf build_uboot build_firmware get_envblkflash create_image update_image"
   echo "Example:  sudo ~/foxbunto_env_setup.sh install"
   echo "Example:  sudo ~/foxbunto_env_setup.sh modify_chroot"
@@ -376,8 +362,6 @@ elif [[ ${1} == "modify_kernel" ]]; then
   modify_kernel
 elif [[ ${1} == "update_image" ]]; then
   update_image
-elif [[ ${1} == "rebuild_chroot" ]]; then
-  rebuild_chroot
 elif [[ ${1} == "install" ]]; then
   { echo 'Defaults timestamp_timeout=180' | sudo EDITOR='tee -a' visudo; } > /dev/null 2>&1
   start_time=$(date +%s)
