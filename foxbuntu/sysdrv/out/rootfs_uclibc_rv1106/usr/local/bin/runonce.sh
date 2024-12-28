@@ -5,8 +5,8 @@ log_message() {
   logger "USB config: $1"  # Log to the system log
 }
 
-# resize filesystem to fill partition
-/usr/bin/filesystem_resize.sh
+# # resize filesystem to fill partition
+# /usr/bin/filesystem_resize.sh
 
 # add RTC support
 bash -c 'echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-3/new_device'
