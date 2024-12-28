@@ -11,5 +11,6 @@ systemctl disable telnetd
 #disable ftp
 
 #disable http
+systemctl stop avahi-daemon
 
 
