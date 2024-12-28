@@ -10,8 +10,10 @@ systemctl disable telnetd
 
 #disable ftp
 systemctl stop vsftpd
+systemctl disable vsftpd
 
 #disable http
 systemctl stop avahi-daemon
+systemctl disable avahi-daemon
 
 
