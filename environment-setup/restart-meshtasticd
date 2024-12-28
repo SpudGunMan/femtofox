@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# file from foxbuntu/sysdrv/out/rootfs_uclibc_rv1106/etc/dhcp/dhclient-exit-hooks.d/restart-meshtasticd
 if [ "$reason" = "BOUND" ] || [ "$reason" = "RENEW" ]; then
     systemctl stop meshtasticd.service
     sleep 5
