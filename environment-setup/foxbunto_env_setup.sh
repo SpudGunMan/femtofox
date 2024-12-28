@@ -354,6 +354,7 @@ usage() {
   echo "To modify the chroot and build an updated image use the arg 'modify_chroot'."
   echo "To modify the kernel and build an updated image use the arg 'modify_kernel'."
   echo "To update the image with the latest changes use the arg 'update_image'."
+  echo "To rebuild the chroot use the arg 'rebuild_chroot'."
   echo "other args: install_prerequisites clone_repos build_env build_sysdrv copy_femtofox_kernelcfg build_kernelconfig modify_rootfs build_rootf build_uboot build_firmware get_envblkflash create_image update_image"
   echo "Example:  sudo ~/foxbunto_env_setup.sh install"
   echo "Example:  sudo ~/foxbunto_env_setup.sh modify_chroot"
