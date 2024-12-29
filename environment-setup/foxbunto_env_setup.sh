@@ -243,9 +243,6 @@ echo "Installing the shell clients for meshtastic..."
 # Curses client for meshtastic
 git clone https://github.com/pdxlocations/curses-client-for-meshtastic.git /opt/curses-client-for-meshtastic
 
-# Emesh client for meshtastic
-git clone https://github.com/thecookingsenpai/emesh.git /opt/emesh
-
 echo "Installing additional tools..."
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" mosquitto mosquitto-clients
 systemctl disable mosquitto
