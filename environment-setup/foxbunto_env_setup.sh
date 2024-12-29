@@ -14,6 +14,12 @@ else
     exit 1
 fi
 
+# Ensure dialog is installed
+if ! command -v dialog &> /dev/null; then
+    echo "dialog could not be found, installing..."
+    apt update && apt install -y dialog
+fi
+
 if [[ $(id -u) != 0 ]]; then
   echo "This script must be run as root; use sudo"
   exit 1
