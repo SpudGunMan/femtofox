@@ -13,16 +13,16 @@ import time
 import meshtastic.tcp_interface
 interface = meshtastic.tcp_interface.TCPInterface(hostname='127.0.0.1', noProto=False)
 
+# Create a telemetry data object
 telemetry_data = telemetry_pb2.Telemetry()
 telemetry_data.time = int(time.time())
-# cpu temp 
-with open('/sys/class/thermal/thermal_zone0/temp', 'r') as cpu_temp:
-    telemetry_data.environment_metrics.temperature = int(cpu_temp.read()) / 1000
-#telemetry_data.environment_metrics.relative_humidity = 69
+telemetry_data.local_stats.upTime = 0
+telemetry_data.environment_metrics.temperature = 0
+telemetry_data.environment_metrics.voltage = 0
+telemetry_data.environment_metrics.current = 0
+# telemetry_data.environment_metrics.relative_humidity = 0
 # telemetry_data.environment_metrics.barometric_pressure = 0
 # telemetry_data.environment_metrics.gas_resistance = 0
-# telemetry_data.environment_metrics.voltage = 0
-# telemetry_data.environment_metrics.current = 0
 # telemetry_data.environment_metrics.iaq = 0
 # telemetry_data.environment_metrics.distance = 0
 # telemetry_data.environment_metrics.lux = 0
@@ -34,6 +34,17 @@ with open('/sys/class/thermal/thermal_zone0/temp', 'r') as cpu_temp:
 # telemetry_data.environment_metrics.wind_gust = 0
 # telemetry_data.environment_metrics.wind_lull = 0
 # telemetry_data.environment_metrics.weight = 0
+
+# read the uptime
+with open('/proc/uptime', 'r') as uptime:
+    telemetry_data.local_stats.upTime = int(float(uptime.readline().split()[0]))
+
+# Read the CPU temperature
+with open('/sys/class/thermal/thermal_zone0/temp', 'r') as cpu_temp:
+    telemetry_data.environment_metrics.temperature = int(cpu_temp.read()) / 1000
+
+# Read the voltage
+
 
 interface.sendData(
     telemetry_data,
