@@ -210,7 +210,7 @@ echo "Installing packages..."
 
 # link gcc library
 ln -sf /lib/arm-linux-gnueabihf/libgcc_s.so.1 /usr/lib/libgcc.so
-DEBIAN_FRONTEND=noninteractive apt install -y --reinstall --option Dpkg::Options::="--force-confold" libc6-dev-armhf-cross gcc-arm-linux-gnueabihf binutils-arm-linux-gnueabihf libc6-armhf-cross linux-libc-dev-armhf-cross
+# gcc only seem work when `apt-get reinstall libc6-dev-armhf-cross` is ran in live os
 
 apt update
 DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" linux-firmware wireless-tools git python-is-python3 python3.10-venv libgpiod-dev libyaml-cpp-dev libbluetooth-dev openssl libssl-dev libulfius-dev liborcania-dev avahi-daemon protobuf-compiler fonts-noto-color-emoji ninja-build chrony
