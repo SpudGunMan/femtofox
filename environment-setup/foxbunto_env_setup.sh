@@ -209,7 +209,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 echo "Installing packages..."
 
 # link gcc library
-ln -sf /lib/arm-linux-gnueabihf/libgcc_s.so.1 /usr/lib/libgcc.so
+# ln -sf /lib/arm-linux-gnueabihf/libgcc_s.so.1 /usr/lib/libgcc.so
 # gcc only seem work when `apt-get reinstall libc6-dev-armhf-cross` is ran in live os
 
 apt update
