@@ -218,10 +218,6 @@ if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y --option Dpkg::Options::="--force-confold"
 if [[ $? -eq 2 ]]; then echo "Error, step failed..."; fi
 
-# Tempfix for SEGFAULT
-wget https://github.com/meshtastic/firmware/releases/download/v2.5.11.8e2a3e5/meshtasticd_2.5.11.8e2a3e5_armhf.deb
-DEBIAN_FRONTEND=noninteractive apt install -y --option Dpkg::Options::="--force-confold" ./meshtasticd_2.5.11.8e2a3e5_armhf.deb
-
 echo "Installing meshtastic cli..."
 
 pip3 install pytap2 pypubsub meshtastic  
