@@ -1,7 +1,7 @@
 #!/bin/bash
 # one liner to download and install the development environment
 # cd ~ && wget https://raw.githubusercontent.com/SpudGunMan/femtofox/refs/heads/labwork/environment-setup/foxbunto_env_setup.sh -O foxbunto_env_setup.sh && sudo bash foxbunto_env_setup.sh install
-# touch 29th 249pm
+# touch 31th 602pm
 cd ~
 if [ -f /etc/os-release ]; then
     . /etc/os-release
@@ -457,6 +457,10 @@ elif [[ ${1} == "update_image" ]]; then
 elif [[ ${1} == "sdk_install" ]]; then
   sdk_install
 else
+  ${1}
+fi
+
+exit 0
   ${1}
 fi
 
