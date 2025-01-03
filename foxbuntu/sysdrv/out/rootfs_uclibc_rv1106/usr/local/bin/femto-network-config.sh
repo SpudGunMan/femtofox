@@ -14,6 +14,7 @@ Options are:
 -r             Restart wifi
 -e             Get ethernet settings
 -w             Get wifi settings
+-n "HOSTNAME"  Change hostname
 -t             Test internet connection
 
 To set wifi settings, use -r as last argument to trigger reset after wpa_supplicant.conf is modified.
@@ -34,7 +35,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # Parse options
-while getopts ":hs:p:c:ewtr" opt; do
+while getopts ":hs:p:c:ewn:tr" opt; do
   case ${opt} in
     h) # Option -h (help)
       echo -e "$help"
@@ -55,9 +56,11 @@ while getopts ":hs:p:c:ewtr" opt; do
       updated_wifi="true"
       ;;
     e) # Option -e (ethernet settings)
-      echo "IPv4 Address: $(ifconfig eth0 | grep 'inet ' | awk '{print $2}')\n
+      echo "Hostname:     $(hostname).local\n\
+IPv4 Address: $(ifconfig eth0 | grep 'inet ' | awk '{print $2}')\n
 IPv6 Address: $(ifconfig eth0 | grep 'inet6 ' | awk '{print $2}')\n\
-MAC Address:  $(ifconfig eth0 | grep 'ether ' | awk '{print $2}')"
+MAC Address:  $(ifconfig eth0 | grep 'ether ' | awk '{print $2}')\n\
+"
       ;;
     w) # Option -w (wifi settings)
       wifi_country=$(grep -m 1 "^country=" "$wpa_supplicant_conf" | cut -d '=' -f 2)
@@ -78,7 +81,8 @@ Connected to:    $(iwconfig 2>/dev/null | grep -i 'ESSID' | awk -F 'ESSID:"' '{p
 Signal Strength: $(iwconfig 2>/dev/null | grep -i 'Signal level' | awk -F 'Signal level=' '{print $2}' | awk '{print $1}')\n\
 MAC address:     $(ifconfig wlan0 | grep ether | awk '{print $2}')\n\
 Current IP:      $(hostname -I | awk '{print $1}')\n\
-For more details, enter \`iwconfig\`." 0 0
+Hostname:        $(hostname).local\n\
+For more details, enter \`iwconfig\`."
       ;;
     t) # Option -t (test internet connection)
       # Define ping targets and initialize counter
@@ -102,6 +106,11 @@ For more details, enter \`iwconfig\`." 0 0
     r) # Option -r (restart wifi)
       updated_wifi="true"
       ;;
+    n) # Option -n (set hostname)
+      sed -i "s/$(hostname)/$OPTARG/g" /etc/hosts
+      hostnamectl set-hostname "$OPTARG"
+      systemctl restart avahi-daemon
+      ;;
     \?)  # Invalid option
       echo "Invalid option: -$OPTARG"
       echo -e "$help"
@@ -121,11 +130,11 @@ if [ "$updated_wifi" = true ]; then
   timeout 30s dhclient -v
   echo "    Wifi restarted. Enabling Meshtastic wifi setting."
   femto-meshtasticd-config.sh -m "--set network.wifi_enabled true" 10 "USB config" #| tee -a /tmp/femtofox-config.log
-  if [ $? -eq 1 ]; then
-    echo "Update of Meshtastic FAILED."
-    exit 1
-  else
-    echo "Updated Meshtastic successfully."
-    exit 0
-  fi
+  # if [ $? -eq 1 ]; then
+  #   echo "Update of Meshtastic FAILED."
+  #   exit 1
+  # else
+  #   echo "Updated Meshtastic successfully."
+  #   exit 0
+  # fi
 fi
